@@ -1,2 +1,3 @@
 .idea
 flask-venv
+__pycache__
