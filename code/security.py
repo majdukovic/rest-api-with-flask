@@ -8,5 +8,6 @@ def authenicate(username, password):
         return user
 
 def identity(payload):
+    print(payload)
     user_id = payload['identity']
     return User.find_by_id(user_id)
