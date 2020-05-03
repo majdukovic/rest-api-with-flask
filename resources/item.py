@@ -70,3 +70,10 @@ class Item(Resource):
 class ItemList(Resource):
     def get(self):
         return {'items': [item.json() for item in ItemModel.query.all()]}
+
+    def delete(self):
+        items = ItemModel.query.all()
+        for item in items:
+            item.delete_from_db()
+
+        return {'message': 'Items deleted'}

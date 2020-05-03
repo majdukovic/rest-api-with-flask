@@ -31,3 +31,10 @@ class Store(Resource):
 class StoreList(Resource):
     def get(self):
         return {'stores': [store.json() for store in StoreModel.query.all()]}
+
+    def delete(self):
+        stores = StoreModel.query.all()
+        for store in stores:
+            store.delete_from_db()
+
+        return {'message': 'Stores deleted'}
