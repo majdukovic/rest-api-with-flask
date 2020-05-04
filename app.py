@@ -8,12 +8,14 @@ from resources.item import Item, ItemList
 from resources.user import UserRegister
 from security import authenicate, identity
 from resources.store import Store, StoreList
+from flasgger import Swagger
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICTIONS'] = False
 app.secret_key = 'mate'
 api = Api(app)
+swagger = Swagger(app)
 
 jwt = JWT(app, authenicate, identity) # /auth -> endpoint created by JWT
 

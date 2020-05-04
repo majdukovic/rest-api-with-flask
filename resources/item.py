@@ -19,6 +19,30 @@ class Item(Resource):
 
     @jwt_required()
     def get(self, name):
+        """
+        Get item by name
+        Returns item name and price
+        ---
+        parameters:
+         - in: path
+           name: name
+           type: string
+           required: true
+        responses:
+          200:
+            description: A single item
+            schema:
+              properties:
+                name:
+                  type: string
+                  description: Name of the item
+                price:
+                  type: number
+                  foramt: double
+                  description: Price of the item
+          404:
+            description: Item does not exist
+        """
         try:
             item = ItemModel.find_by_name(name)
         except:
